@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Register</title>
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h1 class="text-2xl font-bold text-center text-gray-800 mb-8">Connexion</h1>
+
+            <form action="{{ url_for('register') }}" method="POST" class="space-y-6">
+                {{ form_register.hidden_tag() }}
+
+                <!-- Champ Nom -->
+                <div>
+                    {{ form_register.name.label(for="name", class="block text-sm font-medium text-gray-700") }}
+                    {{ form_register.name(id="name", class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                    {% if form_register.name.errors %}
+                    <ul class="text-red-600 text-sm mt-1">
+                        {% for error in form_register.name.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Champ Email -->
+                <div>
+                    {{ form_register.email.label(for="email", class="block text-sm font-medium text-gray-700") }}
+                    {{ form_register.email(id="email", class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                    {% if form_register.email.errors %}
+                    <ul class="text-red-600 text-sm mt-1">
+                        {% for error in form_register.email.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Champ Mot de passe -->
+                <div>
+                    {{ form_register.password.label(for="password", class="block text-sm font-medium text-gray-700") }}
+                    {{ form_register.password(id="password", class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                    {% if form_register.password.errors %}
+                    <ul class="text-red-600 text-sm mt-1">
+                        {% for error in form_register.password.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Bouton d'envoi -->
+                <div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white p-2 rounded-md shadow-md hover:bg-indigo-700 transition duration-300">
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
